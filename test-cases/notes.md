@@ -5,6 +5,7 @@
 ```text
 test-cases/
 ├─ TEST_PLAN.md          # 测试总计划
+├─ EVAL_REVIEW_TEMPLATE.md # 人工评审记录模板
 ├─ notes.md              # 本文件
 ├─ cases/                # 12 个测试用例文件
 │  ├─ case-01-policy-brief-basic.md
@@ -19,10 +20,12 @@ test-cases/
 │  ├─ case-10-ppt-outline-basic.md
 │  ├─ case-11-ppt-outline-exec.md
 │  └─ case-12-ppt-outline-restructure.md
-└─ expected/             # 12 个验收标准模板
-   ├─ case-01.expected.md
-   ├─ ...
-   └─ case-12.expected.md
+├─ expected/             # 12 个验收标准模板
+│  ├─ case-01.expected.md
+│  ├─ ...
+│  └─ case-12.expected.md
+├─ adversarial/          # 5 个对抗性边界用例（adv-01 至 adv-05）
+└─ inputs/               # 部分用例的输入材料
 ```
 
 ## 测试覆盖
@@ -58,7 +61,7 @@ expected 文件为验收标准模板，非标准答案——它们定义"什么�
 
 Skill 变更后，回归验证分两层执行，二者互补且不可互相替代：
 
-1. **结构验证**（自动化）：运行 `npm test` 或 `node scripts/validate-skills.js`，检查文件结构、frontmatter 合规性、资源路径可达性、旧版路径残留。
+1. **结构验证**（自动化）：运行 `npm test`（依次运行 `scripts/validate-skills.js` 与 `scripts/validate-examples.js`），检查 skill 结构与正文约束、样本元数据和测试集结构，清单见 `TEST_PLAN.md` 8.1 节。
 2. **人工 expected 文件评审**（手动）：仅当 skill 指令内容发生实质变更时执行。对照 `expected/case-XX.expected.md` 逐项检查输出是否满足验收口径，重点关注高风险错误触发条件。
 
 结构验证通过不等于输出质量合格。完整流程和判定规则见 `TEST_PLAN.md` 第八节。
