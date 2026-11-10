@@ -38,6 +38,10 @@ const RUNTIME_TOOL_NAMES = [
   'Read', 'Grep', 'Glob', 'Bash', 'Edit', 'Write',
 ];
 
+// Closing frontmatter boundary; shared by the parser and the body extraction.
+// Trailing spaces and CRLF are allowed; following blank lines belong to the body.
+const FRONTMATTER_CLOSE = /\n---[ \t]*\r?\n/;
+
 // Docs files to check for stale flat skill paths.
 const DOCS_TO_CHECK = [
   'README.md',
@@ -119,8 +123,7 @@ function parseFrontmatter(content, filePath) {
   }
 
   // Closing boundary must be a standalone line of exactly "---"
-  const closePattern = /\n---\s*\n/;
-  const closeMatch = closePattern.exec(content.slice(firstLineEnd));
+  const closeMatch = FRONTMATTER_CLOSE.exec(content.slice(firstLineEnd));
   if (!closeMatch) {
     fail(filePath, 'frontmatter missing closing --- boundary on its own line');
     return null;
@@ -330,15 +333,20 @@ function validateSkill(skillName) {
   }
 
   // 9. Standard A1 / A7: body line budget and runtime-neutral wording
-  const fmClose = content.indexOf('\n---\n', content.indexOf('\n'));
-  const body = content.slice(fmClose + 5).replace(/\n$/, '');
-  const bodyLines = body.split('\n').length;
+  const firstLineEnd = content.indexOf('\n');
+  const fmClose = FRONTMATTER_CLOSE.exec(content.slice(firstLineEnd));
+  const body = fmClose
+    ? content.slice(firstLineEnd + fmClose.index + fmClose[0].length).replace(/\r?\n$/, '')
+    : '';
+  const bodyLines = body.split(/\r?\n/).length;
   if (bodyLines > MAX_BODY_LINES) {
     fail(skillFile, 'body has ' + bodyLines + ' lines; limit is ' + MAX_BODY_LINES);
   }
   for (const toolName of RUNTIME_TOOL_NAMES) {
     const escaped = toolName.replace('.', '\\.');
-    if (new RegExp('(^|[^A-Za-z0-9_.])' + escaped + '(?![A-Za-z0-9_])').test(body)) {
+    // A dot on the left still counts as a boundary, so qualified names
+    // such as tools.Read or tools.web.run are caught too.
+    if (new RegExp('(^|[^A-Za-z0-9_])' + escaped + '(?![A-Za-z0-9_])').test(body)) {
       fail(skillFile, 'body mentions runtime-specific tool name "' + toolName + '"');
     }
   }
