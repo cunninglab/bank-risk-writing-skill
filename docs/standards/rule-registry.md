@@ -27,8 +27,8 @@
 | PPT 页标题观点化 | ppt-outline | `CLAUDE.md` Style Requirements › PPT outlines。样本：德勤报告分析页以结论句为标题（第 15 页“境内银行盈利增势放缓，境外银行盈利能力提升”，第 33 页“业管费增速逐渐放缓，成本控制逐步改善”），图题“银行业息差降幅趋缓”（第 13 页） | 保留 |
 | 查数型内容的图表 / 页标题可用中性描述 | ppt-outline、report-outline | 样本：德勤报告业绩数据部分的图题是中性描述（如“图1：归属于母公司股东的净利润”，第 15 页），宏观分析部分用结论句 | 作为观点化标题的例外保留 |
 | 一页一个核心信息 | ppt-outline | `CLAUDE.md` Style Requirements › PPT outlines（one slide should carry one core message）。样本：德勤报告分析页为“一个结论标题 + 一段支撑” | 保留 |
-| 每页“3–5 个支撑点” | ppt-outline | 无 `CLAUDE.md` 出处，样本中也没有逐页要点式的 deck（德勤样本为报告版式）；但这是项目验收契约：`test-cases/cases/case-10-ppt-outline-basic.md`、`case-12-ppt-outline-restructure.md`、`test-cases/expected/case-10.expected.md` | 保留。删除数字会改变已有文档记载的行为，需另行确认 |
-| 汇报版“核心结论 → 3–5 个关键点 → 建议关注事项” | policy-brief | 项目验收契约：`test-cases/cases/case-02-policy-brief-exec.md`、`test-cases/expected/case-02.expected.md` | 保留，理由同上 |
+| 每页“3–5 个支撑点” | ppt-outline | 数字无出处：`CLAUDE.md` 未规定，样本中也没有逐页要点式的 deck。test-cases 中的“3–5”除 case-12 外都写在任务要求里，是用户对单个任务提出的数量（case-10 任务要求第 3 条、输入原文“每页控制在 3–5 个支撑点”），不构成全局默认值的出处。定性要求有出处：`CLAUDE.md` Style Requirements › PPT outlines（keep supporting bullets focused and brief；one slide should carry one core message） | **删除数字**，改为“每页只留支撑本页结论所必需的支撑点，每条一行短句”；case-12 期望特征同步改为定性表述。用户在任务中指定数量时照用户要求 |
+| 汇报版“核心结论 → 3–5 个关键点 → 建议关注事项” | policy-brief | 结构有出处：`prompts/task-routing.md` 混合意图路由表“领导/管理层汇报版”行（结论先行、篇幅精简）。数字无出处；case-02 的“3–5 个关键点”写在任务要求里，属于用户对该任务的指定 | 保留结构，**删除数字**，改为“支撑结论所必需的关键点” |
 | 材料不足时标为“初始提纲 / 初步框架”并列缺口 | report-outline、ppt-outline | `CLAUDE.md` Factuality Rules › When the input is incomplete | 保留；删除“少于 5 页”的数字门槛 |
 | 汇报版结论先行、篇幅精简、待核实事项不省略 | policy-brief、ppt-outline | `prompts/task-routing.md` 混合意图路由表“领导/管理层汇报版”行 | 保留 |
 | 不建议上屏的内容放备注 | ppt-outline | `CLAUDE.md` PPT outlines（prioritize summary and speakability） | 保留 |
