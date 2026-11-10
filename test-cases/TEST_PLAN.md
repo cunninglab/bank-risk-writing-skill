@@ -110,7 +110,7 @@ expected 文件不包含真实标准答案，而是定义"什么是合格的输�
 
 以下错误类型属于高风险错误，出现任一项即判定该 case 不通过：
 
-1. **编造事实** — 输出中出现输入材料不包含的具体数字、日期、机构名、政策名称
+1. **编造事实** — 输出中出现输入材料和已引用检索来源中都不包含的具体数字、日期、机构名、政策名称（policy-brief、report-outline、ppt-outline 可按 `rules/core.md` 检索并引用一、二级公开来源；formal-polish 不检索，以输入材料为准）
 2. **编造政策口径** — 模拟了不存在的监管要求或内部标准
 3. **越界推断** — 将不确定信息写成确定结论
 4. **风格严重偏离** — 输出呈明显新闻稿、营销稿、口语化风格
@@ -140,17 +140,25 @@ Skill 迭代后，应按以下两层互补流程验证行为未被削弱。结�
 
 ```bash
 npm test
-# 或
-node scripts/validate-skills.js
+# 依次运行 node scripts/validate-skills.js 与 node scripts/validate-examples.js
 ```
 
-结构验证覆盖以下检查项：
+`scripts/validate-skills.js` 检查：
 
 - 四个 skill 目录（`skills/<skill-name>/SKILL.md`）存在且各含唯一 `SKILL.md`
 - Frontmatter 字段合规（`name`、`description`、`when_to_use`、`allowed-tools`）
 - 无遗留的非标准 `tools` 字段
-- `Additional Resources` 段落中列出的资源路径均存在于仓库中
+- `Additional Resources` 段落中列出的资源路径均存在于仓库中，且不引用 `test-cases/`
+- SKILL.md 正文不超过 160 行，且不写运行时工具名（如 WebSearch、Read），以便在不同运行环境中通用
 - 关键文档无旧版扁平路径残留
+
+`scripts/validate-examples.js` 检查：
+
+- `examples/` 下 `.meta.yaml` 的来源溯源、使用边界、`usable_for` 与 `linked_test_cases`
+- 编号 case 与 expected 文件双向配对
+- `EVAL_REVIEW_TEMPLATE.md` 存在且包含必需章节
+- 对抗性用例（adv-01 至 adv-05）结构完整
+- case 与 expected 文件中引用的路径均存在
 
 **注意**：结构验证仅检查文件结构、元数据格式和路径可达性，不判断写作质量、事实边界或风格合规。结构验证通过**不等于**输出质量合格。
 
@@ -220,6 +228,10 @@ node scripts/validate-skills.js
 - 编号 case 的验收标准位于 `test-cases/expected/case-XX.expected.md`；对抗性 case 的验收标准内嵌在 `test-cases/adversarial/adv-XX-*.md` 文件中。
 - 对抗性 case 不对应 `test-cases/expected/` 下的独立 expected 文件。
 
+### 8.6 机制增删的效果验证（实验）
+
+新增或删除 skill 中的机制（可以整体删除而 skill 仍能运行的规则块）时，上述两层验证不足以说明机制是否有效。这类改动按 `docs/standards/skill-quality-standard.md` D 层做消融实验与盲评，规则与机制的去留登记在 `docs/standards/rule-registry.md`。2026-11 的升级实验记录见 `docs/experiments/2026-11-09-skills-upgrade/results.md`。
+
 ---
 
 ## 九、当前状态
@@ -230,7 +242,7 @@ node scripts/validate-skills.js
 - **4 个 case 已具备 bounded-input**，可进行人工评审（见下表）
 - **8 个 case 仍为占位状态**，待后续填入真实公开样本（samples）
 - expected 文件为验收标准模板（expected acceptance criteria），非标准答案——验收标准关注"输出应满足什么条件"而非逐字匹配
-- 结构验证脚本（`scripts/validate-skills.js`）已就绪，可通过 `npm test` 运行
+- 结构验证脚本（`scripts/validate-skills.js`、`scripts/validate-examples.js`）已就绪，可通过 `npm test` 运行
 - `npm test` 通过意味着文件结构和元数据正确，**不等于**生成文本质量已通过评估
 - 评审记录模板：`test-cases/EVAL_REVIEW_TEMPLATE.md`
 - 样本入库流程参见 `examples/SAMPLE_META_TEMPLATE.yaml` 和 `docs/public-sample-collection-spec.md`
@@ -258,7 +270,7 @@ node scripts/validate-skills.js
 
 1. **结构锚点**：expected 文件第 2 节列出的全部结构锚点均出现。
 2. **Case-specific anchors**：expected 文件第 3 节列出的全部 case-specific anchors 均满足。
-3. **证据锚点**：事实、判断、建议均可回溯至输入材料或已标注边界。
+3. **证据锚点**：事实、判断、建议均可回溯至输入材料或已引用的检索来源，或已标注边界。
 4. **不可违背列表**：expected 文件第 5 节无任何触发项。
 5. **高风险错误**：EVAL_REVIEW_TEMPLATE.md 中列出的高风险错误均未触发。
 6. **风格边界**：正式、审慎、中性、克制，无媒体化或宣传化表达。
