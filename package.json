@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Cunning-Kang/bank-risk-writing-skill.git"
+    "url": "git+https://github.com/cunninglab/bank-risk-writing-skill.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/Cunning-Kang/bank-risk-writing-skill/issues"
+    "url": "https://github.com/cunninglab/bank-risk-writing-skill/issues"
   },
-  "homepage": "https://github.com/Cunning-Kang/bank-risk-writing-skill#readme"
+  "homepage": "https://github.com/cunninglab/bank-risk-writing-skill#readme"
 }

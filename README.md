@@ -30,7 +30,7 @@
 | report-outline | `skills/report-outline/SKILL.md` | 从材料生成报告提纲 |
 | ppt-outline | `skills/ppt-outline/SKILL.md` | 从材料生成页级 PPT 提纲 |
 
-每个 skill 的入口文件包含触发条件、输入要求、工作方法、输出规范和硬性规则。
+每个 skill 的入口文件包含 frontmatter（触发条件与可用工具）、开工前判断、工作顺序、输出结构、规则和交付前自检。四个 skill 共同遵守 `rules/core.md`；policy-brief、report-outline、ppt-outline 在材料缺原文或数据时会先检索公开资料，formal-polish 不检索。
 
 ### 2. 选择 Skill
 
@@ -40,7 +40,7 @@
 
 - 单一意图：直接匹配对应 skill。
 - 混合意图：按"先提炼事实 → 再生成提纲 → 最后润色或 PPT 化"顺序组合。
-- 材料不足（无原文/链接）：降级输出"材料整理边界与需补证据清单"，不做完整解读。
+- 材料不足（无原文、只有转述）：先按 `rules/core.md` 第 3 节检索原文；检索不到或无法唯一确定是哪份文件时，输出"材料整理边界与需补证据清单"或候选文件，不做完整解读。
 - 涉及内部口径（"结合我行情况""按管理层口径"）：不得模拟内部观点，只基于公开材料整理并明确标注边界。
 - 管理层汇报版：结论先行、待核实事项不省略、不因受众而强化结论。
 
@@ -48,11 +48,10 @@
 
 ```bash
 npm test
-# 等同于
-node scripts/validate-skills.js
+# 依次运行 node scripts/validate-skills.js 与 node scripts/validate-examples.js
 ```
 
-这会检查 skill 目录结构、frontmatter 元数据、资源路径可达性，以及文档中无遗留的旧版路径。
+`validate-skills.js` 检查 skill 目录结构、frontmatter 元数据、资源路径可达性、SKILL.md 正文行数（不超过 160 行）、正文不写运行时工具名、资源节不引用 `test-cases/`，以及文档中无遗留的旧版路径。`validate-examples.js` 检查样本元数据、case 与 expected 配对、评审模板、对抗性用例结构和路径引用。完整清单见 `test-cases/TEST_PLAN.md` 8.1 节。
 
 ### 4. 理解验证覆盖范围
 
@@ -87,7 +86,7 @@ node scripts/validate-skills.js
 
 ## 设计原则
 
-1. **只用公开材料**，不依赖任何内部文档。
+1. **只用公开材料和用户提供的材料**，不依赖任何内部文档；检索公开资料时按 `rules/core.md` 的来源分级引用：官方原文与权威研究可作依据，媒体和转述只作线索。
 2. **先事实，后判断，最后建议**。
 3. **不编造政策、数字、出处、内部口径**。
 4. **强调正式、审慎、结构化表达**。
@@ -123,6 +122,9 @@ bank-risk-writing-skill/
 ├─ glossary/
 │  ├─ preferred-expressions.yml
 │  └─ weak-expressions-to-rewrite.yml
+├─ scripts/
+│  ├─ validate-skills.js      # skill 结构与正文约束
+│  └─ validate-examples.js    # 样本元数据与测试集结构
 ├─ examples/
 │  ├─ README.md
 │  ├─ SAMPLE_META_TEMPLATE.yaml
@@ -134,37 +136,17 @@ bank-risk-writing-skill/
 │     └─ README.md
 ├─ test-cases/
 │  ├─ TEST_PLAN.md
+│  ├─ EVAL_REVIEW_TEMPLATE.md # 人工评审记录模板
 │  ├─ notes.md
 │  ├─ cases/                  # 12 个测试用例
-│  └─ expected/               # 12 个验收标准模板
-└─ prompts/
-   ├─ input-template.md
-   └─ task-routing.md
+│  ├─ expected/               # 12 个验收标准模板
+│  ├─ adversarial/            # 5 个对抗性边界用例
+│  └─ inputs/                 # 部分用例的输入材料
+├─ prompts/
+│  ├─ input-template.md
+│  └─ task-routing.md
+└─ package.json               # npm test 入口
 ```
-
-## 推荐使用顺序
-
-### 第一阶段：先跑通两个最有价值的能力
-
-建议优先测试：
-- `skills/formal-polish/SKILL.md`
-- `skills/ppt-outline/SKILL.md`
-
-因为这两个最容易快速产生实际收益。
-
-### 第二阶段：补规则和表达库
-
-重点维护：
-- `rules/core.md`
-- `glossary/preferred-expressions.yml`
-
-### 第三阶段：建立对照样本与测试集
-
-建议用公开样本做以下测试：
-- 政策原文 → 政策简报
-- 年报风险章节 → 报告提纲
-- 粗糙草稿 → 正式润色稿
-- 长文 → PPT 提纲
 
 ## 文件说明
 
@@ -172,7 +154,7 @@ bank-risk-writing-skill/
 项目总约束文件，定义边界、事实规则、风格要求、输出原则和硬性禁止项。
 
 ### `docs/`
-项目规范文档。`public-sample-collection-spec.md` 定义了公开样本的收集、筛选、命名、评分、清洗和入库规则。
+项目规范与记录文档。`public-sample-collection-spec.md` 定义了公开样本的收集、筛选、命名、评分、清洗和入库规则；`standards/` 是 skill 质量标准和规则与机制登记表；`plans/` 与 `experiments/` 记录了 2026-11 skill 升级的方案、消融实验和审查过程，作为历史记录保留。
 
 ### `skills/`
 存放四个核心能力的技能目录。每个技能位于独立子目录 `skills/<skill-name>/SKILL.md` 中，包含 frontmatter 元数据、能力描述、规则引用和补充资源链接。四个技能为：policy-brief、formal-polish、report-outline、ppt-outline。
@@ -187,7 +169,7 @@ bank-risk-writing-skill/
 用于沉淀公开样本和优质改稿对照案例。`SAMPLE_META_TEMPLATE.yaml` 是所有样本的元信息模板。每个子目录（policy/ reports/ ppt/ rewrite-cases/）有独立的 README 说明收集规范。`rewrite-cases/_template/` 提供了新建改写对照案例时可直接复制的模板文件。
 
 ### `test-cases/`
-用于回归测试。`TEST_PLAN.md` 是测试总计划。`cases/` 下有 12 个独立测试用例文件，覆盖四个 skill 的基础、进阶和边界场景。`expected/` 下有对应的验收标准模板——注意这些是验收标准而非标准答案，用于判定输出是否合格而非与固定文本逐字比对。目前大部分 case 的输入材料为占位状态，待填入真实公开样本。
+用于回归测试。`TEST_PLAN.md` 是测试总计划。`cases/` 下有 12 个独立测试用例文件，覆盖四个 skill 的基础、进阶和边界场景；`adversarial/` 下有 5 个对抗性边界用例。`expected/` 下有对应的验收标准模板——注意这些是验收标准而非标准答案，用于判定输出是否合格而非与固定文本逐字比对。目前大部分 case 的输入材料为占位状态，待填入真实公开样本。
 
 ### `prompts/`
 用于统一任务输入格式与路由逻辑。
@@ -198,20 +180,29 @@ bank-risk-writing-skill/
 |------|------|------|
 | 文件结构与元数据 | 已验证 | `npm test` 覆盖 skill 目录、frontmatter、资源路径可达性 |
 | 共享资源引用 | 已验证 | 各 skill 的 `Additional Resources` 路径可达 |
-| 样本来源溯源 | 框架就绪，待逐样本补充 | 元信息模板已定义，现有样本需补全溯源字段（见 U2） |
+| 样本来源溯源 | 框架就绪，待逐样本补充 | 元信息模板已定义，现有样本需补全 `source_url`、`access_date` 等溯源字段（见 `test-cases/TEST_PLAN.md` 9.3 节） |
 | 测试输入与验收 | 框架就绪，大部分为占位 | 12 个 case 框架已建立，大部分输入材料待填入真实公开样本 |
 | 写作质量评估 | 未自动化 | 写作质量、事实边界、风格合规需人工按 `test-cases/TEST_PLAN.md` 评审 |
+| skill 效果验证 | 一轮实验 | 2026-11 升级做过一轮消融与盲评，每个 skill 1 个用例、单一评审模型，见 `docs/experiments/2026-11-09-skills-upgrade/results.md` |
 | 打包分发 | 未完成 | 当前为源码树，未来需将共享资源一并纳入打包流程 |
 
 **`npm test` 通过 = 结构和元数据正确，不等于生成文本质量已通过评估。**
 
-## 后续最值得补的内容
+## 已知局限与后续工作
 
-1. 一批公开材料的高质量 few-shot 样本
-2. 更多术语库与推荐表达
-3. 任务路由规则
-4. 更细化的测试用例
-5. 针对不同输出对象的风格层
+已知局限（详见 `docs/experiments/2026-11-09-skills-upgrade/results.md` 末节）：
+
+- policy-brief 引用的来源页面没有发布日期时，输出只能标注“发布日期待核实”，按质量标准的 C1.2 仍算不通过。
+- 报告章节标题和简报节标题多为话题标签，观点化程度不足；输出中常有可删的冗余句。
+- 未加载页面的线索容易被写成“检索到……但未加载”的过程叙述。
+- ppt-outline 的支撑点有时复述本页核心信息，没有提供额外依据。
+- 实验试跑在 Codex（`gpt-6.1-terra`）上进行，在 Claude 上的效果未交叉验证。
+
+后续工作：
+
+1. 为 8 个占位 case 填入真实公开材料，并补齐现有样本的溯源字段，使 bounded-input case 升级为 test-ready。
+2. 针对上述已知局限修改共享内核或 skill，并按 `test-cases/TEST_PLAN.md` 8.6 节验证效果。
+3. 完成打包分发流程，将共享资源一并纳入。
 
 ## 不要误用本项目
 
