@@ -1,0 +1,42 @@
+{
+ "policy-brief": {
+  "A": {
+   "C1.1": "pass",
+   "C1.3": "pass",
+   "C1.4": "pass",
+   "C1.5": "pass",
+   "C1.6": "pass",
+   "C2.1": 2,
+   "C2.2": 2,
+   "C2.3": 1,
+   "C3.1": 2,
+   "C3.2": 2,
+   "C3.3": 2,
+   "C3.4": 2,
+   "C4.1": 2,
+   "C4.2": 1,
+   "C4.3": 0,
+   "C4.4": 0,
+   "notes": "C1.1 pass: I checked the dates, document number, 27.3%, 3.2 percentage points and '主体的自主授权' against u1, u6 and u11 and found each one. There is one small paraphrase error that is not fabrication: '依法依规完善重点群体信用信息共享机制', where u6 says '重点领域信用信息共享机制'. C1.4 pass, but borderline: no source is labelled with the words 用户提供 or 自行检索. The line '以下均为已打开核对的一级公开来源' still shows that every source was retrieved and checked by the writer, and the user supplied no materials. C1.5 pass: one sentence drops '探索' for the insurance-policy item ('支持以农业保险保单信息作为涉农融资信用评级参考'). The section heading '支持、鼓励或探索事项' and the table wording '具体提出探索农业保险保单信息用于信用评级' keep the qualifier. C2.3=1: the top-level headings are a generic brief template ('文件概况 / 核心要点 / ... / 依据与来源'). Only the table rows and the impact items come from the material. C4.2=1: the same disclaimer appears several times, and there is a short note on the work process: '以下均为已打开核对的一级公开来源；摘录仅列相关短语'. C4.3=0: of the 5 sentences picked, 4 can be deleted without loss: '原文表述为“防控信贷风险”。' (the sentence before it already says this); '上述支持或探索表述本身不等于要求所有银行一律开展。' (the heading already says it); '上述比较说明的是两份文件的表述差异，不足以证明各项措施在整个政策体系中均属首次提出…' (it repeats table row 1 and the limitations section); '2023年意见已提出信用贷、续贷、信息共享及差异化监管，因此可以排除“这些方向均由2025年方案首次提出”的说法。' (a third repeat of the same point). Keep: '以下均为基于材料的判断。' (the needed judgment label). C4.4=0: every section heading and every impact sub-label is a topic label, not an opinion, e.g. '核心要点', '对银行风险管理的可能影响', '分析与定位', '信用风险识别。', '数据与模型风险。'"
+  },
+  "B": {
+   "C1.1": "pass",
+   "C1.3": "pass",
+   "C1.4": "fail",
+   "C1.5": "pass",
+   "C1.6": "pass",
+   "C2.1": 2,
+   "C2.2": 2,
+   "C2.3": 1,
+   "C3.1": 2,
+   "C3.2": 2,
+   "C3.3": 2,
+   "C3.4": 2,
+   "C4.1": 2,
+   "C4.2": 1,
+   "C4.3": 0,
+   "C4.4": 1,
+   "notes": "C1.1 pass: I checked the following against u1, u6, u7, u12 and u13 and found each one: the document number and dates, the 2024 renewal notice ('不因续贷单独下调风险分类', '单独标识续贷贷款', '防止通过续贷人为操纵贷款风险分类', dated 2024-09-24), the eight-department measures (2025-05-19, '统筹做好信贷投放、结构优化和风险防范'), and the Q3 data (36.09万亿元, 12.2%, 5.6个百分点, 1000万元 scope, 2025-10-25). C1.4 fail: the brief cites seven external URLs but never says whether each source came from the user or was retrieved by the writer. The comparison basis is introduced only as '比较依据：[国务院…]', with no provenance label. C2.3=1: the top-level headings are a generic template ('文件概况 / 核心要点 / 关键变化 / 可能影响 / 分析与定位 / 后续关注点'). The comparison rows and impact items do come from the material. C3.1=2: two competing explanations are given and marked as judgment, and it says '公开政策文本不能区分两者'. C4.2=1: the same disclaimer is repeated, e.g. '不能据此认定信用贷或数据风控为首次提出', '不代表此前所有涉农政策均无类似内容', '可以排除“这些方向均由本次方案首次提出”的解释', and '本简报比较了列明的三份此前政策，并非对所有历史政策的穷尽检索'. C4.3=0: of the 5 sentences picked, all 5 can be deleted without loss: '原文相关表述为“加强对贷款资金流向的监测”。' (it repeats the sentence before it); '这些探索和支持性表述不等于所有银行必须采用特定模式。' (the heading already says it); '该要求来自既有续贷通知，而非本次方案新设。' (the sentence before it and the table already name the 2024 notice as the source); '这里的变化是相对所列2023年文件而言的具体安排，不代表此前所有涉农政策均无类似内容。' (overlaps the scope bullet at the end); '2023年文件已明确支持信用贷、中长期贷款和数字风控，因此可以排除“这些方向均由本次方案首次提出”的解释' (it repeats the table). C4.4=1: the four impact sub-headings are opinion sentences, e.g. '续贷的风险显性化仍是关键。' and '信用风险识别更依赖经营信息。'. The H2 section headings are topic labels, e.g. '关键变化：以此前政策为比较对象' and '对银行风险管理的可能影响'."
+  }
+ }
+}

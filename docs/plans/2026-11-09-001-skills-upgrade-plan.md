@@ -20,7 +20,7 @@
 Change class: Behavioral — 改变 skill 运行行为、校验脚本与项目级 agent 指令；均为本项目内、可回退
 Review mode and source: Standard（全局指令）；用户另行要求方案与最终 diff 做对抗式审查
 Independent review: required（用户要求）— Codex gpt-6.1-sol，推理强度 high
-Outstanding gates: 方案审查；用户确认方案；npm test；实验 D9；最终 diff 审查
+Outstanding gates: 最终 diff 审查（已过：方案审查 p2 PASS；用户确认方案；npm test PASSED；实验 D9 通过，见 `docs/experiments/2026-11-09-skills-upgrade/results.md`）
 Not covered by checks: npm test 只查结构，不评估写作质量与事实边界；由第五节实验覆盖
 ```
 

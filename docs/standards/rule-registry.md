@@ -6,8 +6,8 @@
 
 | 编号 | 名称 | 防的失效 | 目标判据 | 位置 | 代表用例 | 消融结论 | 证据 |
 |---|---|---|---|---|---|---|---|
-| M1 | 先建依据清单 | 事实失效 | C1 | `rules/evidence-ledger.md`；policy-brief、report-outline、ppt-outline 中的 `mechanism:M1` 区域 | policy-brief / case-01 检索版 | 待实验 | — |
-| M2 | 研究增量 | 增量失效 | C3.1–C3.4 | `rules/research-increment.md`；policy-brief、report-outline、ppt-outline 中的 `mechanism:M2` 区域 | report-outline / case-07 | 待实验 | — |
+| M1 | 先建依据清单 | 事实失效 | C1 | `rules/evidence-ledger.md`；policy-brief、report-outline、ppt-outline 中的 `mechanism:M1` 区域 | policy-brief / case-01 检索版 | 保留：第一对打平（两组都只因 C1.4 不通过），补跑一对中完整组 C1 通过、去除组不通过；证据偏弱，见结果文件“机制去留”一节 | `docs/experiments/2026-11-09-skills-upgrade/results.md`；运行 r02、r03、r11、r12 |
+| M2 | 研究增量 | 增量失效 | C3.1–C3.4 | `rules/research-increment.md`；policy-brief、report-outline、ppt-outline 中的 `mechanism:M2` 区域 | report-outline / case-07 | 保留：C1 两组都通过，C3 合计 8 对 4 | `docs/experiments/2026-11-09-skills-upgrade/results.md`；运行 r07、r08 |
 
 未进入候选的 huashu-report 做法见标准第四节；“四角色身份设定”不采纳。
 
