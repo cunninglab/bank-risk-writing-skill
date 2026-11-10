@@ -33,7 +33,10 @@ const MAX_BODY_LINES = 160;
 
 // Standard A7: runtime-specific tool names must not appear in the body
 // (frontmatter allowed-tools is exempt), so skills run on any runtime.
-const RUNTIME_TOOL_NAMES = ['WebSearch', 'WebFetch', 'web_search'];
+const RUNTIME_TOOL_NAMES = [
+  'WebSearch', 'WebFetch', 'web_search', 'web.run',
+  'Read', 'Grep', 'Glob', 'Bash', 'Edit', 'Write',
+];
 
 // Docs files to check for stale flat skill paths.
 const DOCS_TO_CHECK = [
@@ -327,24 +330,28 @@ function validateSkill(skillName) {
   }
 
   // 9. Standard A1 / A7: body line budget and runtime-neutral wording
-  const bodyStart = content.indexOf('\n---', content.indexOf('\n')) + 4;
-  const body = content.slice(bodyStart);
+  const fmClose = content.indexOf('\n---\n', content.indexOf('\n'));
+  const body = content.slice(fmClose + 5).replace(/\n$/, '');
   const bodyLines = body.split('\n').length;
   if (bodyLines > MAX_BODY_LINES) {
     fail(skillFile, 'body has ' + bodyLines + ' lines; limit is ' + MAX_BODY_LINES);
   }
   for (const toolName of RUNTIME_TOOL_NAMES) {
-    if (body.includes(toolName)) {
+    const escaped = toolName.replace('.', '\\.');
+    if (new RegExp('(^|[^A-Za-z0-9_.])' + escaped + '(?![A-Za-z0-9_])').test(body)) {
       fail(skillFile, 'body mentions runtime-specific tool name "' + toolName + '"');
     }
   }
 
+  // Standard A9: Additional Resources lists runtime dependencies only;
+  // catch test-cases/ in any form (backtick path, Markdown link, ./ or ../ prefix).
+  const resourcesStart = content.indexOf('# Additional Resources');
+  if (resourcesStart !== -1 && content.slice(resourcesStart).includes('test-cases/')) {
+    fail(skillFile, 'Additional Resources must not reference test-cases/');
+  }
+
   for (const rp of resourcePaths) {
-    // Standard A9: Additional Resources lists runtime dependencies only
-    if (rp.startsWith('test-cases/')) {
-      fail(skillFile, 'Additional Resources must not reference test-cases/: `' + rp + '`');
-      continue;
-    }
+    if (rp.includes('test-cases/')) continue; // reported above (A9)
 
     // Check for absolute or user-specific paths
     if (rp.startsWith('/') || rp.startsWith('~') || rp.includes('/Users/') || rp.includes('/home/')) {

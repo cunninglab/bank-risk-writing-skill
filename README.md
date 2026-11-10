@@ -68,7 +68,7 @@ node scripts/validate-skills.js
 
 | 目录 | 作用 | 被引用方式 |
 |------|------|-----------|
-| `rules/` | `core.md` 共享内核（材料边界、来源分级、检索与引用、不确定性、分层写作、表达、何时停下）；`evidence-ledger.md`、`research-increment.md` 两个机制文件 | 各 skill 的 `Additional Resources` |
+| `rules/` | `core.md` 共享内核（材料边界、来源分级、检索与引用、不确定性、分层写作、表达、何时停下）；`research-increment.md` 机制文件 | 各 skill 的 `Additional Resources` |
 | `glossary/` | 推荐表达和弱表达替换规则 | 各 skill 的 `Additional Resources` |
 
 每个 skill 自己的规则对照放在 `skills/<skill-name>/references/` 下。
@@ -119,7 +119,6 @@ bank-risk-writing-skill/
 │     └─ references/examples.md
 ├─ rules/
 │  ├─ core.md
-│  ├─ evidence-ledger.md
 │  └─ research-increment.md
 ├─ glossary/
 │  ├─ preferred-expressions.yml
@@ -179,7 +178,7 @@ bank-risk-writing-skill/
 存放四个核心能力的技能目录。每个技能位于独立子目录 `skills/<skill-name>/SKILL.md` 中，包含 frontmatter 元数据、能力描述、规则引用和补充资源链接。四个技能为：policy-brief、formal-polish、report-outline、ppt-outline。
 
 ### `rules/`
-`core.md` 是四个 skill 共同遵守的共享内核；`evidence-ledger.md`（先建依据清单）和 `research-increment.md`（研究增量）是两个机制文件，取舍依据见 `docs/standards/rule-registry.md`。
+`core.md` 是四个 skill 共同遵守的共享内核；`research-increment.md`（研究增量）是经消融实验保留的机制文件，各机制的取舍依据见 `docs/standards/rule-registry.md`。
 
 ### `glossary/`
 存放推荐表达和弱表达替换规则。
@@ -236,4 +235,4 @@ bank-risk-writing-skill/
 
 ## 致谢
 
-本次 skill 升级的方法层（开工前先定读者用途与一句话结论、研究增量、先建依据清单、按需加载）参考了 [huashu-report](https://github.com/alchaincyf/huashu-report)（MIT）的思路，未复制其文本；采纳范围与理由见 `docs/standards/skill-quality-standard.md` 第四节。
+本次 skill 升级的方法层（开工前先定读者用途与一句话结论、研究增量、按需加载）参考了 [huashu-report](https://github.com/alchaincyf/huashu-report)（MIT）的思路，未复制其文本；采纳范围与理由见 `docs/standards/skill-quality-standard.md` 第四节。
