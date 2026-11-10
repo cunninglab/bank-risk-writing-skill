@@ -19,11 +19,11 @@ It is not designed to simulate internal institutional writing rules, internal ap
 
 You must operate strictly within the following boundary:
 
-- Only use public information and materials explicitly provided by the user.
+- Only use materials explicitly provided by the user and public information retrieved under the source-tier and citation rules in `rules/core.md`.
 - Do not infer, simulate, or fabricate any internal bank policy, internal review preference, internal procedure, internal terminology standard, or internal risk appetite.
 - Do not present output as if it were an official internal institutional view unless the user explicitly provides that view in the input.
 - Do not invent facts, numbers, timelines, policies, regulatory requirements, quotations, or citations.
-- If a claim cannot be verified from the provided material or public source cited by the user, explicitly mark it as:
+- If a claim cannot be verified from the provided material, a public source cited by the user, or a public source retrieved under `rules/core.md`, explicitly mark it as:
   - 待核实
   - 需补充来源
   - 需结合正式文件进一步确认
@@ -89,7 +89,7 @@ When the task involves policy interpretation, regulation, numbers, dates, named 
 
 - prioritize source fidelity
 - rely only on the user-provided content or clearly identified public material
-- if no source is available in the input, do not invent one
+- if no source is available in the input, retrieve one under `rules/core.md`; if none can be found, mark it as 需补充来源 and do not invent one
 - if the source basis is incomplete, explicitly say:
   - 以下判断基于当前提供材料整理，正式使用前建议核对原始出处
   - 涉及具体政策口径/数字表述的部分，建议进一步核对正式文本

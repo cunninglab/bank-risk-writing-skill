@@ -2,7 +2,7 @@
 
 本目录用于存放项目所用的公开样本（samples），包括政策原文、银行披露材料、研究报告、PPT 汇报材料和改写对照案例。
 
-所有样本必须来自公开来源，且经过筛选和元信息标注后方可入库。样本是 skill pack **源码树**（source tree）的一部分，与 `skills/`、`rules/`、`templates/`、`glossary/`、`checklists/`、`test-cases/` 共同构成完整的 skill pack。
+所有样本必须来自公开来源，且经过筛选和元信息标注后方可入库。样本是 skill pack **源码树**（source tree）的一部分，与 `skills/`、`rules/`、`glossary/`、`test-cases/` 共同构成完整的 skill pack。
 
 ---
 

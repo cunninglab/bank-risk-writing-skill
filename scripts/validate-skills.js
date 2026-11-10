@@ -28,6 +28,13 @@ const INVALID_FM_FIELDS = ['tools'];
 // Tool names that must be present in allowed-tools.
 const REQUIRED_TOOLS = ['Read', 'Grep', 'Glob'];
 
+// docs/standards/skill-quality-standard.md A1: SKILL.md body line budget.
+const MAX_BODY_LINES = 160;
+
+// Standard A7: runtime-specific tool names must not appear in the body
+// (frontmatter allowed-tools is exempt), so skills run on any runtime.
+const RUNTIME_TOOL_NAMES = ['WebSearch', 'WebFetch', 'web_search'];
+
 // Docs files to check for stale flat skill paths.
 const DOCS_TO_CHECK = [
   'README.md',
@@ -319,7 +326,26 @@ function validateSkill(skillName) {
     warn(skillFile, 'no resource paths found in Additional Resources section');
   }
 
+  // 9. Standard A1 / A7: body line budget and runtime-neutral wording
+  const bodyStart = content.indexOf('\n---', content.indexOf('\n')) + 4;
+  const body = content.slice(bodyStart);
+  const bodyLines = body.split('\n').length;
+  if (bodyLines > MAX_BODY_LINES) {
+    fail(skillFile, 'body has ' + bodyLines + ' lines; limit is ' + MAX_BODY_LINES);
+  }
+  for (const toolName of RUNTIME_TOOL_NAMES) {
+    if (body.includes(toolName)) {
+      fail(skillFile, 'body mentions runtime-specific tool name "' + toolName + '"');
+    }
+  }
+
   for (const rp of resourcePaths) {
+    // Standard A9: Additional Resources lists runtime dependencies only
+    if (rp.startsWith('test-cases/')) {
+      fail(skillFile, 'Additional Resources must not reference test-cases/: `' + rp + '`');
+      continue;
+    }
+
     // Check for absolute or user-specific paths
     if (rp.startsWith('/') || rp.startsWith('~') || rp.includes('/Users/') || rp.includes('/home/')) {
       fail(skillFile, 'resource path is absolute or user-specific: `' + rp + '`');

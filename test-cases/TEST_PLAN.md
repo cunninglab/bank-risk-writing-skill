@@ -191,7 +191,7 @@ node scripts/validate-skills.js
 #### 何时运行
 
 - 当某个 skill 的指令内容发生变更时，除了运行该 skill 对应的编号 case（8.2 节），还需运行该 skill 关联的所有对抗性 case。
-- 当 `rules/` 下的共享规则（factuality-rules、citation-rules、confidentiality-boundary）发生变更时，需运行全部对抗性 case。
+- 当共享内核 `rules/core.md` 发生变更时，需运行全部对抗性 case。
 - 当 `prompts/task-routing.md` 中的路由降级逻辑发生变更时，需运行涉及路由降级的对抗性 case（adv-01、adv-02）。
 
 #### 对抗性 Case 映射

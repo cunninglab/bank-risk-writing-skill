@@ -68,10 +68,10 @@ node scripts/validate-skills.js
 
 | 目录 | 作用 | 被引用方式 |
 |------|------|-----------|
-| `rules/` | 写作、事实核查、引用、风格、保密边界与禁用表达规则 | 各 skill 的 `Additional Resources` |
-| `templates/` | 常见文稿结构模板 | 各 skill 的 `Additional Resources` |
-| `glossary/` | 术语、推荐表达和弱表达替换规则 | 各 skill 的 `Additional Resources` |
-| `checklists/` | 输出后的审稿自检 | 各 skill 的 `Additional Resources` |
+| `rules/` | `core.md` 共享内核（材料边界、来源分级、检索与引用、不确定性、分层写作、表达、何时停下）；`evidence-ledger.md`、`research-increment.md` 两个机制文件 | 各 skill 的 `Additional Resources` |
+| `glossary/` | 推荐表达和弱表达替换规则 | 各 skill 的 `Additional Resources` |
+
+每个 skill 自己的规则对照放在 `skills/<skill-name>/references/` 下。
 
 **单独复制 `skills/` 不完整。** 任何打包或分发操作必须包含上述目录，否则 skill 引用的资源路径将无法解析。
 
@@ -100,31 +100,28 @@ bank-risk-writing-skill/
 ├─ README.md
 ├─ CLAUDE.md
 ├─ docs/
-│  └─ public-sample-collection-spec.md
+│  ├─ public-sample-collection-spec.md
+│  ├─ standards/              # skill 质量标准、规则与机制登记表
+│  ├─ plans/
+│  └─ experiments/            # 消融实验与审查记录
 ├─ skills/
 │  ├─ policy-brief/
-│  │  └─ SKILL.md
+│  │  ├─ SKILL.md
+│  │  └─ references/examples.md
 │  ├─ formal-polish/
-│  │  └─ SKILL.md
+│  │  ├─ SKILL.md
+│  │  └─ references/examples.md
 │  ├─ report-outline/
-│  │  └─ SKILL.md
+│  │  ├─ SKILL.md
+│  │  └─ references/examples.md
 │  └─ ppt-outline/
-│     └─ SKILL.md
+│     ├─ SKILL.md
+│     └─ references/examples.md
 ├─ rules/
-│  ├─ writing-principles.md
-│  ├─ factuality-rules.md
-│  ├─ citation-rules.md
-│  ├─ tone-and-style.md
-│  ├─ confidentiality-boundary.md
-│  └─ banned-and-caution-phrases.md
-├─ templates/
-│  ├─ policy-analysis-template.md
-│  ├─ risk-report-template.md
-│  ├─ exec-summary-template.md
-│  └─ ppt-outline-template.md
+│  ├─ core.md
+│  ├─ evidence-ledger.md
+│  └─ research-increment.md
 ├─ glossary/
-│  ├─ financial-terms.yml
-│  ├─ regulatory-terms.yml
 │  ├─ preferred-expressions.yml
 │  └─ weak-expressions-to-rewrite.yml
 ├─ examples/
@@ -136,10 +133,6 @@ bank-risk-writing-skill/
 │  └─ rewrite-cases/
 │     ├─ _template/           # 改写对照案例模板
 │     └─ README.md
-├─ checklists/
-│  ├─ report-review-checklist.md
-│  ├─ policy-review-checklist.md
-│  └─ ppt-review-checklist.md
 ├─ test-cases/
 │  ├─ TEST_PLAN.md
 │  ├─ notes.md
@@ -163,9 +156,8 @@ bank-risk-writing-skill/
 ### 第二阶段：补规则和表达库
 
 重点维护：
-- `rules/banned-and-caution-phrases.md`
+- `rules/core.md`
 - `glossary/preferred-expressions.yml`
-- `templates/ppt-outline-template.md`
 
 ### 第三阶段：建立对照样本与测试集
 
@@ -187,19 +179,13 @@ bank-risk-writing-skill/
 存放四个核心能力的技能目录。每个技能位于独立子目录 `skills/<skill-name>/SKILL.md` 中，包含 frontmatter 元数据、能力描述、规则引用和补充资源链接。四个技能为：policy-brief、formal-polish、report-outline、ppt-outline。
 
 ### `rules/`
-存放写作、事实核查、引用、风格、保密边界与禁用表达规则。
-
-### `templates/`
-存放常见文稿结构模板，帮助模型输出更稳定。
+`core.md` 是四个 skill 共同遵守的共享内核；`evidence-ledger.md`（先建依据清单）和 `research-increment.md`（研究增量）是两个机制文件，取舍依据见 `docs/standards/rule-registry.md`。
 
 ### `glossary/`
-存放术语、推荐表达和弱表达替换规则。
+存放推荐表达和弱表达替换规则。
 
 ### `examples/`
 用于沉淀公开样本和优质改稿对照案例。`SAMPLE_META_TEMPLATE.yaml` 是所有样本的元信息模板。每个子目录（policy/ reports/ ppt/ rewrite-cases/）有独立的 README 说明收集规范。`rewrite-cases/_template/` 提供了新建改写对照案例时可直接复制的模板文件。
-
-### `checklists/`
-用于输出后的审稿自检。
 
 ### `test-cases/`
 用于回归测试。`TEST_PLAN.md` 是测试总计划。`cases/` 下有 12 个独立测试用例文件，覆盖四个 skill 的基础、进阶和边界场景。`expected/` 下有对应的验收标准模板——注意这些是验收标准而非标准答案，用于判定输出是否合格而非与固定文本逐字比对。目前大部分 case 的输入材料为占位状态，待填入真实公开样本。
@@ -247,3 +233,7 @@ bank-risk-writing-skill/
 它最合适的定位是：
 
 > 基于公开资料的正式写作、结构化分析与汇报辅助系统。
+
+## 致谢
+
+本次 skill 升级的方法层（开工前先定读者用途与一句话结论、研究增量、先建依据清单、按需加载）参考了 [huashu-report](https://github.com/alchaincyf/huashu-report)（MIT）的思路，未复制其文本；采纳范围与理由见 `docs/standards/skill-quality-standard.md` 第四节。

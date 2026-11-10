@@ -9,244 +9,82 @@ allowed-tools:
   - Read
   - Grep
   - Glob
+  - WebSearch
+  - WebFetch
 ---
 
-# Purpose
+# PPT 页级提纲
 
-你负责将用户提供的报告、长文、政策解读结果、年报摘要或分析材料，转换为适合 PPT 汇报的页级结构。
+把报告、长文、政策解读或分析材料，转换为正式汇报用的逐页提纲。做 PPT 不是把报告压短，而是把主线讲清：每页一个核心信息，标题就是这页的结论。
 
-你的职责是：
-- 提炼主线，而不是压缩原文段落
-- 设计页间逻辑，而不是罗列目录标题
-- 让每页标题尽量观点化
-- 控制每页信息密度，避免“文字墙”
-- 明确哪些内容适合上屏，哪些更适合放备注栏或口头说明
+本 skill 不负责报告提纲（用 report-outline）、润色（用 formal-polish），也不写完整的演讲稿。
 
-PPT 不是把报告缩短，而是把主线讲清。
+开工前先读完 `rules/core.md`。它规定了材料边界、来源分级、检索与引用、不确定性、分层写作、表达和何时停下，本 skill 全部适用，下文不再重复。
 
-# When to Use
+## 开工前
 
-适用于以下场景：
-- 报告转 PPT
-- 摘要转汇报页提纲
-- 政策解读转演示结构
-- 研究材料转管理层汇报提纲
-- 长文压缩为 5–10 页左右的表达框架
+1. **读者用途。** 按用户说明的受众和场景确定页序与详略。面向管理层时，结论先行，支撑点从少到精，建议和关注点单独成页或放在结尾页。
+2. **一句话主线。** 写下整份汇报要让听众记住的一句话。写不出来，说明材料还撑不起一份汇报，只能交付初始提纲（规则 4）。
+3. **材料判断。** 确认材料能支撑哪些判断、支撑到什么强度。缺原文、缺数据时，按 `rules/core.md` 第 3 节检索。
 
-不适用于：
-- 用户只需要报告提纲、不需要页级表达时
-- 原始材料极少、尚不足以支撑多页汇报时
-- 需要直接产出完整演讲稿或页面文案时
+<!-- mechanism:M1 -->
+**依据清单（在工作顺序第 1 步之前做）。** 页面上准备使用的数字、日期、机构、文件，按 `rules/evidence-ledger.md` 先建依据清单，页面只从清单里取事实；交付前按该文件的自检核对。
+<!-- /mechanism:M1 -->
 
-# Trigger Conditions
+## 工作顺序
 
-Invoke this skill when the user asks to convert a report, long text, policy interpretation, annual report excerpt, research summary, or analysis material into a page-level PPT outline for formal briefing or presentation.
+1. **找主线**：主问题、主结论、主要支撑各是什么。
+2. **定页序**：默认按“总体判断 → 背景与变化 → 核心观察 → 影响或风险 → 建议与后续关注 → 总结（可选）”排列，再按材料和受众调整。
+3. **写每页**：先写这页的核心信息，再据此写观点化标题，最后写支撑点。
+4. **分上屏与备注**：长条文、背景细节、数字明细、口径定义、方法说明、来源说明，放进备注栏或“不建议上 PPT 的内容”。
+5. **查页间衔接**：相邻页不重复，同类信息不拆到多页，前后逻辑不跳跃。
 
-Use this skill when the request includes signals such as:
-- 做 PPT、PPT 提纲、转汇报页、演示结构、页级提纲
-- 将报告、长文、政策解读或研究材料压缩为 3–10 页左右的汇报结构
-- 需要每页标题、支撑点、本页作用、备注建议或口头摘要
+完成判据：每页只有一个核心信息，并且这个信息能从材料中找到依据。
 
-Do not use this skill when:
-- the user needs a report outline rather than slide-level structure
-- the user only needs language polishing
-- the user asks for a policy brief rather than a presentation structure
-- the material is too limited to support multiple slides unless the output is explicitly framed as an initial sketch
-- the requested output would require inventing unsupported facts, numbers, conclusions, or internal institutional views
+<!-- mechanism:M2 -->
+**研究增量（在工作顺序第 3 步中做）。** 按 `rules/research-increment.md` 处理四件事：竞争解释和局限与替代解释，合成一页“局限与替代解释”；外部基准放进相关页的支撑点或备注；相对既有框架的定位，放进“背景与变化”页。交付前按该文件的自检核对。
+<!-- /mechanism:M2 -->
 
-When the user asks for “汇报版” or “领导汇报”, prioritize conclusion-first sequencing and reduce page count.
+## 输出结构
 
-# Required Inputs
+- 建议总标题
+- 汇报主线：先用一句话写出主线，再用几句话说明整份 PPT 的讲述顺序
+- 页级提纲，每页包括：页标题、本页核心信息、支撑点、本页作用（背景 / 判断 / 对比 / 影响 / 风险 / 建议 / 总结）、备注建议（有才写）
+- 不建议上 PPT 的内容
+- 可选：1 分钟口头摘要（仅当用户有汇报需求时提供）
+<!-- mechanism:M1 -->
+- 依据与来源
+<!-- /mechanism:M1 -->
 
-尽量识别：
-- 原始材料
-- 汇报对象：自己整理 / 同事沟通 / 部门汇报 / 领导汇报
-- 目标页数：如 5 页 / 8 页 / 10 页
-- 风格偏向：稳健 / 结论先行 / 分析型 / 执行型
-- 是否需要附口头说明提要
+## 规则
 
-若用户未说明，默认：
-- 按 5–8 页控制
-- 优先采用“结论/判断 → 支撑 → 风险/影响 → 建议/关注点”的顺序
-- 以正式、审慎、可讲述为优先
+各条规则的 ❌/✅ 对照见 `skills/ppt-outline/references/examples.md`。
 
-# Input Schema
+1. **页标题写这一页的结论，强度不超过材料。** 用户要求标题“有冲击力”时，靠观点清晰来做到，不靠加强语气。理由：听众往往只记住标题；标题说过了头，整份汇报就跟着失真。
+2. **一页一个核心信息。** 某页标题只能写成“风险概况”这类目录名，说明这页没有核心信息，应该并入相邻页。理由：一页讲两件事，听众两件都记不住。
+3. **每页 3–5 个支撑点，写成一行短句，不搬整段原文。** 理由：页面是讲的提示，不是读的文字。
+4. **材料不足时交付初始提纲。** 写明能支撑的页数和缺什么材料，缺口页标“待补充”。理由：内容空洞却看似完整的提纲，会被直接拿去做成页面。
+5. **查数页可以用中性标题。** 例如“附：分业务条线数据”。理由：这类页面供听众查数，不承载判断，在标题里下结论反而会误导。
 
-Required input:
-- `source_material`: report, long text, policy summary, annual report excerpt, research note, or analytical material to convert.
+页标题句式可参考 `glossary/preferred-expressions.yml` 中的 `ppt_titles`，但要根据材料重新组织，不套用句式。
 
-Optional input:
-- `audience`: self-use / colleague discussion / department briefing / leadership briefing.
-- `page_count`: target page range or exact page count.
-- `style`: prudent / conclusion-first / analytical / execution-oriented.
-- `include_speaker_notes`: yes / no.
-- `include_one_minute_summary`: yes / no.
+## 交付前自检
 
-Defaults when omitted:
-- use 5–8 pages.
-- sequence as conclusion or judgment → support → risks or impacts → recommendations or follow-up items.
-- prioritize formal, prudent, speakable slide logic.
-
-Insufficient input handling:
-- If the material cannot support the requested page count, reduce scope or mark the outline as an initial sketch.
-- Uncertain or unsupported content must be reflected in conservative page titles and notes.
-
-# Working Method
-
-按以下顺序组织：
-1. 先判断输入是否适合做页级汇报；若更适合报告提纲、正式润色或政策摘要，应先指出
-2. 识别材料主问题、主结论、主支撑
-3. 判断哪些信息必须上屏，哪些只适合备注栏或口头补充
-4. 将内容压缩为页级信息，而非段落搬运
-5. 为每页设置单一核心信息
-6. 保证页间衔接自然，避免跳跃或重复
-
-# Failure Modes
-
-| 触发条件 | 一线修复 | 仍失败兜底 |
-|---|---|---|
-| 输入只有"帮我做PPT"，无任何材料 | 输出最小框架（3页结构模板）+ 列出材料需求清单 | 🔴 STOP · 告知用户至少需要一份材料摘要才能产出有意义的提纲 |
-| 材料过薄，无法支撑目标页数 | 减少页数至材料可支撑的范围，标注"初始提纲" | 只给 2–3 页核心框架 + 材料缺口清单 |
-| 材料全是数据表格，无分析线索 | 按数据维度组织页面，标题保守（"数据概览"而非"趋势判断"） | 🔴 STOP · 提示用户缺少分析角度，建议补充解读方向后再生成提纲 |
-| 用户指定页数但材料存在明显缺口 | 标注缺口页，已填充部分正常输出 | 🔴 STOP · 告知用户当前材料不足以支撑指定页数，建议先补充或减少页数 |
-
-🔴 CHECKPOINT · 输出提纲前，若材料不足以支撑 5 页以上汇报，必须显式标注"以下为初始提纲"并列出材料缺口。不得输出看似完整但内容空洞的提纲。
-
-🔴 CHECKPOINT · 每页标题必须观点化。若某页标题只能是目录式命名（如"风险概况"），说明该页信息密度不足，应合并到相邻页或标记待补充。
-
-# Default Output Structure
-
-## 1. 建议总标题
-- 标题应能概括整份汇报的主题与结论方向
-
-## 2. 汇报主线
-- 用 2–4 句话说明整份 PPT 的讲述逻辑
-
-## 3. 页级提纲
-每页包含：
-- 页标题（尽量观点化）
-- 本页核心信息（1 句，可选但推荐）
-- 3–5 个支撑点
-- 本页作用：背景 / 判断 / 对比 / 影响 / 风险 / 建议 / 总结
-- 备注栏建议（如有）
-
-## 4. 不建议上 PPT 的内容
-- 列出更适合放备注栏、附件或口头说明的内容
-
-## 5. 可选：1 分钟口头摘要
-- 仅在用户有汇报需求时提供
-
-# Output Contract
-
-The output must include:
-1. 建议总标题
-2. 汇报主线
-3. 页级提纲
-4. 不建议上 PPT 的内容
-5. 可选：1 分钟口头摘要（仅在用户有汇报需求时提供）
-
-Each page in the page-level outline must include:
-- 页标题（尽量观点化）
-- 本页核心信息（1 句，可选但推荐）
-- 3–5 个支撑点
-- 本页作用
-- 备注栏建议（如有）
-
-Mandatory quality constraints:
-- One page should carry one core message.
-- Page titles should follow the `ppt_titles` patterns in `glossary/preferred-expressions.yml` and avoid directory-style labels.
-- Long source paragraphs, excessive numerical detail, definitions, and method notes should be moved to notes or the “不建议上 PPT” section.
-- Page titles and support points must not express conclusions stronger than the source material supports.
-- The outline must prioritize speakability and information selection over comprehensive text compression.
-
-Self-check anchor:
-- Each slide must have a traceable source basis, a single core message, and no more than 3–5 support points unless the user explicitly requests otherwise.
-
-# Page-Level Rules
-
-1. 一页尽量只承载一个核心信息
-2. 每页支撑点控制在 3–5 个，且尽量为一行短句
-3. 不把长段原文直接搬上页面
-4. 同一层级页面的表达密度应基本一致
-5. 若材料无法支撑强判断，标题和要点都要保守
-6. 同类信息不要拆散到多页造成重复
-
-# Title Guidance
-
-页标题优先参考 `glossary/preferred-expressions.yml` 中 `ppt_titles` 类表达模式，
-确保标题尽量观点化，而非目录式命名。
-
-`ppt_titles.preferred` 是观点化标题句式参考；应根据输入材料重新组织，不得机械套用。
-`ppt_titles.avoid` 是目录式标题禁用清单；除非用户明确要求保留目录式结构，否则不得作为页标题使用。
-
-# What Belongs in Notes Instead of Slides
-
-下列内容优先放备注栏或口头说明，而不是上屏：
-- 过长的政策条文原文
-- 需要连续解释的背景细节
-- 过多数字明细、补充口径、定义说明
-- 证据来源、样本口径、方法说明
-- 不足以支撑标题、但值得提醒的限制条件
-
-# Page Logic Preference
-
-默认页序逻辑：
-1. 总体判断 / 结论
-2. 背景与变化
-3. 核心观察或支撑
-4. 主要影响或风险
-5. 建议动作 / 后续关注
-6. 总结页（可选）
-
-如用户指定受众为管理层，优先采用：
-- 结论先行
-- 支撑从少到精
-- 建议与关注点单独成页或并入结尾页
-
-# Hard Rules
-
-1. 不得编造原材料中不存在的事实、数据、机构、政策依据
-2. 不得使用目录式空标题替代观点化标题
-3. 不得让单页出现明显“文字墙”
-4. 不得为追求完整而牺牲可讲述性
-5. 不得在标题中给出材料无法支持的强结论
-
-# Final Self-Check
-
-输出前确认：
-- 页标题是否大多为观点化表达，而非目录名
-- 是否每页只有一个核心信息
-- 是否每页支撑点控制在 3–5 个
-- 是否明确列出了不建议上屏的内容
-- 是否存在把不确定内容写成强结论的情况
+- 汇报主线以一句话开头。
+- 除查数页外，每页标题都是观点句，且强度不超过支撑点和来源。
+- 没有一页同时讲两件事。
+- 没有整段原文上屏。
+- 列出了不建议上 PPT 的内容。
+- 材料不足时，写明了“初始提纲”和缺口。
 
 # Additional Resources
 
-Shared rules:
-- `rules/factuality-rules.md` — factuality constraints and uncertainty labeling
-- `rules/citation-rules.md` — citation and source handling requirements
-- `rules/confidentiality-boundary.md` — public-material boundary and internal-policy prohibition
-- `rules/writing-principles.md` — ordering, structure, and style principles
-- `rules/tone-and-style.md` — target tone and expressions to avoid
-- `rules/banned-and-caution-phrases.md` — prohibited and caution expressions with recommended alternatives
-
-Templates:
-- `templates/ppt-outline-template.md` — PPT page-level outline structure template
-
-Glossary (optional expression guidance; do not treat as a factual source):
-- `glossary/preferred-expressions.yml` — recommended formal and cautious expressions (see ppt_titles category for title patterns)
-
-Review checklist:
-- `checklists/ppt-review-checklist.md` — self-check items for PPT outline output
-
-Acceptance references:
-- `test-cases/TEST_PLAN.md` — test plan covering skill acceptance criteria
-- `test-cases/cases/case-10-ppt-outline-basic.md`
-- `test-cases/cases/case-11-ppt-outline-exec.md`
-- `test-cases/cases/case-12-ppt-outline-restructure.md`
-- `test-cases/expected/case-10.expected.md`
-- `test-cases/expected/case-11.expected.md`
-- `test-cases/expected/case-12.expected.md`
-
-Project-level writing rules:
-- `CLAUDE.md`
+- `rules/core.md` — 开工前必读：材料边界、来源分级、检索与引用、不确定性、分层写作、表达、何时停下
+<!-- mechanism:M1 -->
+- `rules/evidence-ledger.md` — 建依据清单时读
+<!-- /mechanism:M1 -->
+<!-- mechanism:M2 -->
+- `rules/research-increment.md` — 处理局限、替代解释与外部基准时读
+<!-- /mechanism:M2 -->
+- `skills/ppt-outline/references/examples.md` — 拿不准某条规则怎么执行时读
+- `glossary/preferred-expressions.yml` — 写页标题时参考 `ppt_titles`；不是事实来源
