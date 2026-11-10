@@ -547,5 +547,81 @@
    ]
   }
  ],
- "r14": []
+ "r14": [],
+ "r15": [
+  {
+   "excerpt": "保持贷款投放力度，优化信贷结构，防控信贷风险",
+   "urls": [
+    "https://app.www.gov.cn/govdata/gov/202506/26/531673/article.html"
+   ],
+   "found_in": [
+    "https://app.www.gov.cn/govdata/gov/202506/26/531673/article.html"
+   ]
+  },
+  {
+   "excerpt": "强化对企业经营情况等第一还款来源分析",
+   "urls": [
+    "https://app.www.gov.cn/govdata/gov/202506/26/531673/article.html"
+   ],
+   "found_in": [
+    "https://app.www.gov.cn/govdata/gov/202506/26/531673/article.html"
+   ]
+  },
+  {
+   "excerpt": "加强信息真实性核查",
+   "urls": [
+    "https://app.www.gov.cn/govdata/gov/202506/26/531673/article.html"
+   ],
+   "found_in": [
+    "https://app.www.gov.cn/govdata/gov/202506/26/531673/article.html"
+   ]
+  },
+  {
+   "excerpt": "依法合规、充分授权",
+   "urls": [
+    "https://app.www.gov.cn/govdata/gov/202506/26/531673/article.html"
+   ],
+   "found_in": [
+    "https://app.www.gov.cn/govdata/gov/202506/26/531673/article.html"
+   ]
+  },
+  {
+   "excerpt": "优化普惠金融监管考核指标和贷款风险权重、不良贷款容忍度等监管制度",
+   "urls": [
+    "https://www.mee.gov.cn/zcwj/gwywj/202310/t20231012_1042898.shtml",
+    "https://www.nfra.gov.cn/chinese/docfile/2024/baab6e7ebbf44a41943fc591ba1a2255.pdf"
+   ],
+   "found_in": [
+    "https://www.mee.gov.cn/zcwj/gwywj/202310/t20231012_1042898.shtml"
+   ]
+  },
+  {
+   "excerpt": "真实、准确反映金融资产质量",
+   "urls": [
+    "https://www.mee.gov.cn/zcwj/gwywj/202310/t20231012_1042898.shtml",
+    "https://www.nfra.gov.cn/chinese/docfile/2024/baab6e7ebbf44a41943fc591ba1a2255.pdf"
+   ],
+   "found_in": [
+    "https://www.nfra.gov.cn/chinese/docfile/2024/baab6e7ebbf44a41943fc591ba1a2255.pdf"
+   ]
+  },
+  {
+   "excerpt": "普惠小微贷款和农户贷款中的信用贷款占比持续提升",
+   "urls": [
+    "https://camlmac.pbc.gov.cn/xindaishichangsi/5443861/5443865/5443892/5957f8d15a824e9e88d01710873482d3/2025110711361912922.pdf"
+   ],
+   "found_in": [
+    "https://camlmac.pbc.gov.cn/xindaishichangsi/5443861/5443865/5443892/5957f8d15a824e9e88d01710873482d3/2025110711361912922.pdf"
+   ]
+  }
+ ],
+ "r16": [
+  {
+   "excerpt": null,
+   "urls": [
+    "https://www.nfra.gov.cn/cn/view/pages/ItemDetail.html?docId=1209103&generaltype=0%2C&itemId=915"
+   ],
+   "found_in": []
+  }
+ ]
 }

@@ -12,3 +12,6 @@ u11 https://www.pbc.gov.cn/xindaishichangsi/5443861/5443865/5443892/5957f8d15a82
 u12 https://app.www.gov.cn/govdata/gov/202510/25/538964/article.html
 u13 https://www.mct.gov.cn/preview/whhlyqyzcxxfw/jr/202409/t20240925_955436.html
 u14 https://disc.static.szse.cn/disc/disk03/finalpage/2026-03-21/dfd80de4-dbef-407a-981a-6b62cfef0d8b.PDF
+u15 https://camlmac.pbc.gov.cn/xindaishichangsi/5443861/5443865/5443892/5957f8d15a824e9e88d01710873482d3/2025110711361912922.pdf
+u16 https://www.nfra.gov.cn/chinese/docfile/2024/baab6e7ebbf44a41943fc591ba1a2255.pdf
+u17 https://www.nfra.gov.cn/cn/view/pages/ItemDetail.html?docId=1209103&generaltype=0%2C&itemId=915
